@@ -22,17 +22,28 @@ cd java-project-71
 
 ## Использование
 
-<!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
 
----
+### Windows
+```shell
+cd app
+.\gradlew.bat clean installDist build
+.\build\install\app\bin\app.bat <path_to_file1> <path_to_file2>  
+```
 
-<details>
-<summary>Автоматические тесты Хекслета</summary>
+### Linux
+```bash
+cd app
+./gradlew clean installDist build
+./build/install/app/bin/app <path_to_file1> <path_to_file2>  
+```
 
-Тесты запускаются на каждый коммит. За запуск отвечает файл `.github/workflows/hexlet-check.yml` — не удаляйте и не переименовывайте ни его, ни репозиторий.
-
-</details>
-
-## О Хекслете
-
-[Хекслет](https://ru.hexlet.io/) — школа программирования: авторские программы обучения с практикой, поддержкой наставников и реальными проектами, которые остаются в резюме. Этот репозиторий — один из таких проектов.
+### Так же возможен запуск примера с файлами-примерами командой
+```shell
+make run-dist 
+```
+***Важно!*** При запуске этой команды вы должны убедиться в том, что на вашем компьютере установлена утилита make
+```shell
+make --version
+```
+## Пример использования 
+![img.png](app/src/main/resources/img/img.png)
