@@ -27,6 +27,7 @@ spotless {
 dependencies {
     implementation("info.picocli:picocli:4.7.7")
     implementation("tools.jackson.core:jackson-databind:3.2.4")
+    implementation("tools.jackson.dataformat:jackson-dataformat-yaml:3.2.4")
     testImplementation("org.junit.jupiter:junit-jupiter-api:6.1.3")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:6.1.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
