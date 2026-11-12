@@ -1,12 +1,11 @@
 package hexlet.code;
 
-import tools.jackson.databind.ObjectMapper;
-import tools.jackson.databind.json.JsonMapper;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2) throws Exception {
@@ -26,17 +25,30 @@ public class Differ {
             if (json1.containsKey(key)) {
                 if (json2.containsKey(key)) {
                     if (Objects.equals(json1.get(key), json2.get(key))) {
-                        result.append("  ").append(key).append(": ").append(json1.get(key)); //есть и там и там в одном виде
+                        result.append("  ")
+                                .append(key)
+                                .append(": ")
+                                .append(json1.get(key)); // есть и там и там в одном виде
                     } else {
                         // есть и там и там, но изменили во втором
-                        result.append("- ").append(key).append(": ").append(json1.get(key)).append("\n  ");
+                        result.append("- ")
+                                .append(key)
+                                .append(": ")
+                                .append(json1.get(key))
+                                .append("\n  ");
                         result.append("+ ").append(key).append(": ").append(json2.get(key));
                     }
                 } else {
-                    result.append("- ").append(key).append(": ").append(json1.get(key)); // есть только в первом, во втором удалили
+                    result.append("- ")
+                            .append(key)
+                            .append(": ")
+                            .append(json1.get(key)); // есть только в первом, во втором удалили
                 }
             } else {
-                result.append("+ ").append(key).append(": ").append(json2.get(key)); // есть только во втором, добавили
+                result.append("+ ")
+                        .append(key)
+                        .append(": ")
+                        .append(json2.get(key)); // есть только во втором, добавили
             }
         }
 
@@ -45,7 +57,7 @@ public class Differ {
         return result.toString();
     }
 
-    private static  Map<String, Object> parse(String filePath) throws IOException {
+    private static Map<String, Object> parse(String filePath) throws IOException {
         Path path = Path.of(filePath);
         ObjectMapper mapper = JsonMapper.builder().build();
 
