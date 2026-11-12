@@ -1,6 +1,7 @@
 # Вычислитель отличий (Java)
 
 [![hexlet-check](https://github.com/h8masha/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/h8masha/java-project-71/actions)
+[![build-workflow](https://github.com/h8masha/java-project-71/actions/workflows/build-workflow.yml/badge.svg)](https://github.com/h8masha/java-project-71/actions/workflows/build-workflow.yml)
 
 Консольная утилита, которая сравнивает два файла JSON или YAML по ключам первого уровня и выводит разницу в трёх форматах. Вы разбираете аргументы командной строки через picocli, читаете оба формата через Jackson и выносите каждый формат вывода в свой класс. Тесты на JUnit вы пишете сами, а сборка в GitHub Actions проверяет стиль и порог покрытия.
 
