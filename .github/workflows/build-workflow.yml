@@ -5,4 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: chmod +x app/gradlew
       - run: cd app && make check-coverage-build
