@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.formatters.Json;
 import hexlet.formatters.Plain;
 import hexlet.formatters.Stylish;
 import java.util.*;
@@ -16,7 +17,10 @@ public class Differ {
 
         uniqueKeys.sort(Comparator.naturalOrder());
 
-        Formatter formatter = format.equals("plain") ? new Plain() : new Stylish();
+        Formatter formatter =
+                format.equals("plain")
+                        ? new Plain()
+                        : (format.equals("json") ? new Json() : new Stylish());
 
         return formatter.process(uniqueKeys, file1, file2);
     }

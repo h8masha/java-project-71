@@ -184,4 +184,75 @@ public class DifferTest {
         String expected = "";
         assertEquals(expected, Differ.generate(file1, file2, "plain"));
     }
+
+    @Test
+    public void whenResIsJsonAndJsonFieldsAreEqual_ShouldReturnUnchangedJson() throws Exception {
+        String expected =
+                """
+                {"aboba":null,"first":"done","second":"lol"}""";
+        assertEquals(expected, Differ.generate(file1, file2, "json"));
+    }
+
+    @Test
+    public void whenResIsJsonAndJsonSecondRemove_shouldReturnOnlyOneEmbeddedRemovingBlock()
+            throws Exception {
+        String expected =
+                """
+                {"aboba":{"status":"removed","oldValue":null},"first":"done","second":"lol"}""";
+        assertEquals(expected, Differ.generate(file1, file4, "json"));
+    }
+
+    @Test
+    public void whenResIsJsonAndJsonSecondChanged_shouldReturnOnlyOneEmbeddedEditedBlock()
+            throws Exception {
+        String expected =
+                """
+                {"aboba":{"status":"updated","oldValue":null,"newValue":1},"first":"done","second":"lol"}""";
+
+        assertEquals(expected, Differ.generate(file1, file3, "json"));
+    }
+
+    @Test
+    public void whenResIsJsonAndJsonSecondHadAdditionBlock_shouldReturnOnlyOneEmbeddedAddedBlock()
+            throws Exception {
+        String expected =
+                """
+                {"aboba":null,"first":"done","second":"lol","third":{"status":"added","newValue":"10 seconds"}}""";
+        assertEquals(expected, Differ.generate(file1, file5, "json"));
+    }
+
+    @Test
+    public void whenResIsJsonAndYamlFieldsAreEqual_ShouldReturnUnchangedJson() throws Exception {
+        String expected =
+                """
+                {"aboba":null,"first":"done","second":"lol"}""";
+        assertEquals(expected, Differ.generate(file1y, file2y, "json"));
+    }
+
+    @Test
+    public void whenResIsJsonAndYamlSecondRemove_shouldReturnOnlyOneEmbeddedRemovingBlock()
+            throws Exception {
+        String expected =
+                """
+                {"aboba":{"status":"removed","oldValue":null},"first":"done","second":"lol"}""";
+        assertEquals(expected, Differ.generate(file1y, file4y, "json"));
+    }
+
+    @Test
+    public void whenResIsJsonAndYamlSecondChanged_shouldReturnOnlyOneEmbeddedEditedBlock()
+            throws Exception {
+        String expected =
+                """
+                {"aboba":{"status":"updated","oldValue":null,"newValue":1},"first":"done","second":"lol"}""";
+        assertEquals(expected, Differ.generate(file1y, file3y, "json"));
+    }
+
+    @Test
+    public void whenResIsJsonAndYamlSecondHadAdditionBlock_shouldReturnOnlyOneEmbeddedAddedBlock()
+            throws Exception {
+        String expected =
+                """
+                {"aboba":null,"first":"done","second":"lol","third":{"status":"added","newValue":"10 seconds"}}""";
+        assertEquals(expected, Differ.generate(file1y, file5y, "json"));
+    }
 }

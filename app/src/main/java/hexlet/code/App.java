@@ -29,8 +29,10 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
 
-        if (format.equals("plain")) {
+        if (format.equalsIgnoreCase("plain")) {
             System.out.println(Differ.generate(filepath1, filepath2, "plain"));
+        } else if (format.equalsIgnoreCase("json")) {
+            System.out.println(Differ.generate(filepath1, filepath2, "json"));
         } else {
             System.out.println(Differ.generate(filepath1, filepath2));
         }

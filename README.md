@@ -67,6 +67,9 @@ make --version
 > **--format "значение"**
 > ![img.png](app/src/main/resources/img/formatter_extended.png)
 
-## Пример использования с вариативным выбором форматтера
+## Пример использования с вариативным выбором форматтера (plain)
 ![img.png](app/src/main/resources/img/any_cases.png)
+
+## Примеры использования с вариативным выбором форматтера (json)
+![img.png](app/src/main/resources/json_ability.png)
 
