@@ -11,7 +11,7 @@ import tools.jackson.dataformat.yaml.YAMLMapper;
 public class Parser {
     protected static Map<String, Object> parse(String filePath) throws IOException {
         Path path = Path.of(filePath);
-        var extension = filePath.split("\\.")[filePath.split("\\.").length - 1];
+        var extension = filePath.split("\\.")[filePath.split("\\.").length - 1].toLowerCase();
 
         ObjectMapper mapper =
                 extension.equals("json")

@@ -23,7 +23,9 @@ public class Differ {
                         result.append("  ")
                                 .append(key)
                                 .append(": ")
-                                .append(file1.get(key)); // есть и там и там в одном виде
+                                .append(
+                                        file1.getOrDefault(
+                                                key, null)); // есть и там и там в одном виде
                     } else {
                         // есть и там и там, но изменили во втором
                         result.append("- ")
@@ -31,19 +33,24 @@ public class Differ {
                                 .append(": ")
                                 .append(file1.get(key))
                                 .append("\n  ");
-                        result.append("+ ").append(key).append(": ").append(file2.get(key));
+                        result.append("+ ")
+                                .append(key)
+                                .append(": ")
+                                .append(file2.getOrDefault(key, null));
                     }
                 } else {
                     result.append("- ")
                             .append(key)
                             .append(": ")
-                            .append(file1.get(key)); // есть только в первом, во втором удалили
+                            .append(
+                                    file1.getOrDefault(
+                                            key, null)); // есть только в первом, во втором удалили
                 }
             } else {
                 result.append("+ ")
                         .append(key)
                         .append(": ")
-                        .append(file2.get(key)); // есть только во втором, добавили
+                        .append(file2.getOrDefault(key, null)); // есть только во втором, добавили
             }
         }
 
