@@ -10,6 +10,9 @@ repositories {
     mavenCentral()
 }
 
+group = "hexlet.code"
+version = "1.0-SNAPSHOT"
+
 spotless {
     java {
         // Сортировка импортов
