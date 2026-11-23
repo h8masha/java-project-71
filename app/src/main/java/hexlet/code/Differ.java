@@ -1,13 +1,14 @@
 package hexlet.code;
 
+import hexlet.formatters.Plain;
+import hexlet.formatters.Stylish;
 import java.util.*;
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2) throws Exception {
+    public static String generate(String filePath1, String filePath2, String format)
+            throws Exception {
         Map<String, Object> file1 = Parser.parse(filePath1);
         Map<String, Object> file2 = Parser.parse(filePath2);
-
-        StringBuilder result = new StringBuilder("{");
 
         Set<String> uniqueKeysSet = new TreeSet<>(file1.keySet());
         uniqueKeysSet.addAll(file2.keySet());
@@ -15,47 +16,12 @@ public class Differ {
 
         uniqueKeys.sort(Comparator.naturalOrder());
 
-        for (String key : uniqueKeys) {
-            result.append("\n  ");
-            if (file1.containsKey(key)) {
-                if (file2.containsKey(key)) {
-                    if (Objects.equals(file1.get(key), file2.get(key))) {
-                        result.append("  ")
-                                .append(key)
-                                .append(": ")
-                                .append(
-                                        file1.getOrDefault(
-                                                key, null)); // есть и там и там в одном виде
-                    } else {
-                        // есть и там и там, но изменили во втором
-                        result.append("- ")
-                                .append(key)
-                                .append(": ")
-                                .append(file1.get(key))
-                                .append("\n  ");
-                        result.append("+ ")
-                                .append(key)
-                                .append(": ")
-                                .append(file2.getOrDefault(key, null));
-                    }
-                } else {
-                    result.append("- ")
-                            .append(key)
-                            .append(": ")
-                            .append(
-                                    file1.getOrDefault(
-                                            key, null)); // есть только в первом, во втором удалили
-                }
-            } else {
-                result.append("+ ")
-                        .append(key)
-                        .append(": ")
-                        .append(file2.getOrDefault(key, null)); // есть только во втором, добавили
-            }
-        }
+        Formatter formatter = format.equals("plain") ? new Plain() : new Stylish();
 
-        result.append("\n}");
+        return formatter.process(uniqueKeys, file1, file2);
+    }
 
-        return result.toString();
+    public static String generate(String filePath1, String filePath2) throws Exception {
+        return generate(filePath1, filePath2, "stylish");
     }
 }

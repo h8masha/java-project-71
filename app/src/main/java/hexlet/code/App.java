@@ -29,10 +29,10 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
 
-        if (format.equals("stylish")) {
-            System.out.println(Differ.generate(filepath1, filepath2));
+        if (format.equals("plain")) {
+            System.out.println(Differ.generate(filepath1, filepath2, "plain"));
         } else {
-            // обработка вывода с другим форматтером
+            System.out.println(Differ.generate(filepath1, filepath2));
         }
 
         return 0;

@@ -11,10 +11,15 @@
 ## Стек
 
 - Java
+- Picocli
+- Jacoco
+- JUnit
+- Spotless
+- jackson-databind
 
 ## Установка
 
-<!-- Опишите установку: клонирование, зависимости, переменные окружения -->
+<!-- Описание утановки: клонирование, зависимости, переменные окружения -->
 
 ```bash
 git clone https://github.com/h8masha/java-project-71.git
@@ -61,4 +66,7 @@ make --version
 2. В полной форме
 > **--format "значение"**
 > ![img.png](app/src/main/resources/img/formatter_extended.png)
+
+## Пример использования с вариативным выбором форматтера
+![img.png](app/src/main/resources/img/any_cases.png)
 

@@ -33,7 +33,7 @@ public class DifferTest {
     }
 
     @Test
-    public void whenJsonDataIsEqual_shouldReturnWithoutSigns() throws Exception {
+    public void whenResIsStylishAndJsonDataIsEqual_shouldReturnWithoutSigns() throws Exception {
         String expected =
                 """
                 {
@@ -45,7 +45,8 @@ public class DifferTest {
     }
 
     @Test
-    public void whenJsonSecondHasDifferentValueInSameKeys_shouldReturnPlusMinus() throws Exception {
+    public void whenResIsStylishAndJsonSecondHasDifferentValueInSameKeys_shouldReturnPlusMinus()
+            throws Exception {
         String expected =
                 """
                 {
@@ -58,7 +59,7 @@ public class DifferTest {
     }
 
     @Test
-    public void whenJsonSecondHasNoSuchKey_shouldReturnMinus() throws Exception {
+    public void whenResIsStylishAndJsonSecondHasNoSuchKey_shouldReturnMinus() throws Exception {
         String expected =
                 """
                 {
@@ -70,7 +71,7 @@ public class DifferTest {
     }
 
     @Test
-    public void whenJsonSecondHasAdditionKey_shouldReturnPlus() throws Exception {
+    public void whenResIsStylishAndJsonSecondHasAdditionKey_shouldReturnPlus() throws Exception {
         String expected =
                 """
                 {
@@ -83,7 +84,7 @@ public class DifferTest {
     }
 
     @Test
-    public void whenYAMLDataIsEqual_shouldReturnWithoutSigns() throws Exception {
+    public void whenResIsStylishAndYAMLDataIsEqual_shouldReturnWithoutSigns() throws Exception {
         String expected =
                 """
                 {
@@ -95,7 +96,8 @@ public class DifferTest {
     }
 
     @Test
-    public void whenYAMLSecondHasDifferentValueInSameKeys_shouldReturnPlusMinus() throws Exception {
+    public void whenResIsStylishAndYAMLSecondHasDifferentValueInSameKeys_shouldReturnPlusMinus()
+            throws Exception {
         String expected =
                 """
                 {
@@ -108,7 +110,7 @@ public class DifferTest {
     }
 
     @Test
-    public void whenYAMLSecondHasNoSuchKey_shouldReturnMinus() throws Exception {
+    public void whenResIsStylishAndYAMLSecondHasNoSuchKey_shouldReturnMinus() throws Exception {
         String expected =
                 """
                 {
@@ -120,7 +122,7 @@ public class DifferTest {
     }
 
     @Test
-    public void whenYAMLSecondHasAdditionKey_shouldReturnPlus() throws Exception {
+    public void whenResIsStylishAndYAMLSecondHasAdditionKey_shouldReturnPlus() throws Exception {
         String expected =
                 """
                         {
@@ -130,5 +132,56 @@ public class DifferTest {
                           + third: 10 seconds
                         }""";
         assertEquals(expected, Differ.generate(file1y, file5y));
+    }
+
+    @Test
+    public void whenResIsPlainAndJsonDataIsEqual_shouldReturnEmpty() throws Exception {
+        String expected = "";
+        assertEquals(expected, Differ.generate(file1, file2, "plain"));
+    }
+
+    @Test
+    public void whenResIsPlainAndJsonSecondHasDifferentValueInSameKey_shouldReturnOneUpdated()
+            throws Exception {
+        String expected = "Property 'aboba' was updated. From null to 1";
+        assertEquals(expected, Differ.generate(file1, file3, "plain"));
+    }
+
+    @Test
+    public void whenResIsPlainAndJsonSecondHasNoSuchKey_shouldReturnOnlyOneRemoved()
+            throws Exception {
+        String expected = "Property 'aboba' was removed";
+        assertEquals(expected, Differ.generate(file1, file4, "plain"));
+    }
+
+    @Test
+    public void whenResIsPlainAndJsonSecondHasAdditionKey_shouldReturnOneAdded() throws Exception {
+        String expected = "Property 'third' was added with value: '10 seconds'";
+        assertEquals(expected, Differ.generate(file1, file5, "plain"));
+    }
+
+    @Test
+    public void whenResIsPlainAndYAMLDataIsEqual_shouldReturnEmpty() throws Exception {
+        String expected = "";
+        assertEquals(expected, Differ.generate(file1, file2, "plain"));
+    }
+
+    @Test
+    public void whenResIsPlainAndYAMLSecondHasDifferentValueInSameKeys_shouldReturnOneUpdated()
+            throws Exception {
+        String expected = "Property 'aboba' was updated. From null to 1";
+        assertEquals(expected, Differ.generate(file1, file3, "plain"));
+    }
+
+    @Test
+    public void whenResIsPlainAndYAMLSecondHasNoSuchKey_shouldReturnOneRemoved() throws Exception {
+        String expected = "Property 'aboba' was removed";
+        assertEquals(expected, Differ.generate(file1, file4, "plain"));
+    }
+
+    @Test
+    public void whenResIsPlainAndYAMLSecondHasAdditionKey_shouldReturnOneAdded() throws Exception {
+        String expected = "";
+        assertEquals(expected, Differ.generate(file1, file2, "plain"));
     }
 }
