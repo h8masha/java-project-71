@@ -46,5 +46,19 @@ make run-dist
 ```shell
 make --version
 ```
-## Пример использования 
+## Пример использования c файлами .json
 ![img.png](app/src/main/resources/img/img.png)
+
+## Пример использования c файлами .yml
+![img.png](app/src/main/resources/img/img2.png)
+## Пример использования с возможностью выбора форматтера 
+#### *по умолчанию* форматтер задан как **stylish**
+![img.png](app/src/main/resources/img/formatter_short.png)
+#### Однако задать форматтер можно при помощи флага format: 
+1. В краткой форме
+> **-f "значение"**
+![img.png](app/src/main/resources/img/formatter_short.png)
+2. В полной форме
+> **--format "значение"**
+> ![img.png](app/src/main/resources/img/formatter_extended.png)
+
